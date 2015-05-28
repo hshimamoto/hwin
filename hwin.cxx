@@ -41,7 +41,7 @@ LPCTSTR cls::name(void)
 	return wc.lpszClassName;
 }
 
-wnd::wnd(cls *c) : wndclass(c), handle(NULL)
+wnd::wnd(cls *c) : wndclass(c), handle(NULL), pwp(NULL)
 {
 }
 
@@ -65,7 +65,7 @@ HWND wnd::create(void)
 	handle = ::CreateWindow(wndclass->name(), "wnd", WS_OVERLAPPEDWINDOW,
 			CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
 			NULL, NULL, instance, NULL);
-	wndproc *pwp = freelist.front();
+	pwp = freelist.front();
 
 	freelist.pop_front();
 	usedlist.push_back(pwp);
@@ -81,7 +81,11 @@ void wnd::destroy(void)
 {
 	if (handle)
 		::DestroyWindow(handle);
-	handle = NULL;
+	// restore
+	::SetWindowLongPtr(handle, GWLP_WNDPROC, (LONG_PTR)origproc);
+	usedlist.remove(pwp);
+	freelist.push_back(pwp);
+	pwp = NULL;
 }
 
 app::app()

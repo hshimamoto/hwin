@@ -25,10 +25,18 @@ public:
 	LPCTSTR name(void);
 };
 
+class wnd;
+
+struct wndproc {
+	wnd **w;
+	WNDPROC proc;
+};
+
 class wnd {
 	cls *wndclass;
 	HWND handle;
 	WNDPROC origproc;
+	wndproc *pwp;
 public:
 	wnd(cls *);
 	virtual ~wnd();
