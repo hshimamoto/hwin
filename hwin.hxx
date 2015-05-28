@@ -18,6 +18,8 @@ namespace hWin {
 
 class wnd {
 public:
+	wnd();
+	virtual ~wnd();
 	virtual LRESULT proc(HWND w, UINT m, WPARAM wp, LPARAM lp);
 };
 

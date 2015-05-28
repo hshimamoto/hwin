@@ -9,6 +9,19 @@ namespace hWin {
 
 static HINST instance;
 
+wnd::wnd()
+{
+}
+
+wnd::~wnd()
+{
+}
+
+LRESULT wnd::proc(HWND w, UINT m, WPARAM wp, LPARAM lp)
+{
+	return 0;
+}
+
 }; // namespace hWin
 
 using namespace hWin;
