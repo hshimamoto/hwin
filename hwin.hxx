@@ -22,13 +22,16 @@ public:
 	cls();
 	virtual ~cls();
 	virtual void regClass(void);
+	LPCTSTR name(void);
 };
 
 class wnd {
+	cls *c;
 public:
-	wnd();
+	wnd(cls *);
 	virtual ~wnd();
 	virtual LRESULT proc(HWND w, UINT m, WPARAM wp, LPARAM lp);
+	HWND create(void);
 };
 
 }; // hWin

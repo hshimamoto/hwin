@@ -30,7 +30,12 @@ void cls::regClass(void)
 	::RegisterClassEx(&wc);
 }
 
-wnd::wnd()
+LPCTSTR cls::name(void)
+{
+	return wc.lpszClassName;
+}
+
+wnd::wnd(cls *p) : c(p)
 {
 }
 
@@ -41,6 +46,15 @@ wnd::~wnd()
 LRESULT wnd::proc(HWND w, UINT m, WPARAM wp, LPARAM lp)
 {
 	return 0;
+}
+
+HWND wnd::create(void)
+{
+	HWND w = ::CreateWindow(c->name(), "wnd", WS_OVERLAPPEDWINDOW,
+			CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+			NULL, NULL, instance, NULL);
+
+	return w;
 }
 
 static LRESULT CALLBACK def_wndproc(HWND w, UINT m, WPARAM wp, LPARAM lp)
