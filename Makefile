@@ -7,6 +7,7 @@ CXXFLAGS = -g -O2 -Wall
 CXXFLAGS += -mwindows
 LDFLAGS = -g -O2 -Wall
 LDFLAGS += -mwindows
+LDFLAGS += -static
 
 test-objs = hwin.o test.o
 
