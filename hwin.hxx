@@ -34,6 +34,13 @@ public:
 	HWND create(void);
 };
 
+class app {
+public:
+	app();
+	virtual ~app();
+	void msgloop(void);
+};
+
 }; // hWin
 
 extern int hWinMain(HINST, LPTSTR, int);

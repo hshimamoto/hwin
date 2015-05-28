@@ -57,6 +57,24 @@ HWND wnd::create(void)
 	return w;
 }
 
+app::app()
+{
+}
+
+app::~app()
+{
+}
+
+void app::msgloop(void)
+{
+	MSG msg;
+
+	while (::GetMessage(&msg, NULL, 0, 0)) {
+		::TranslateMessage(&msg);
+		::DispatchMessage(&msg);
+	}
+}
+
 static LRESULT CALLBACK def_wndproc(HWND w, UINT m, WPARAM wp, LPARAM lp)
 {
 	return ::DefWindowProc(w, m, wp, lp);
