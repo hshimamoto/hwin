@@ -119,6 +119,7 @@ int WINAPI _tWinMain(HINST inst, HINST prev, LPTSTR line, int show)
 {
 	hWin::instance = inst;
 
+	// initialize wndproc array
 	for (int i = 0; i < HWIN_MAX_WINDOW; i++)
 		freelist.push_back(&a__wnds[i]);
 
