@@ -16,6 +16,14 @@
 
 namespace hWin {
 
+class cls {
+	WNDCLASSEX wc;
+public:
+	cls();
+	virtual ~cls();
+	virtual void regClass(void);
+};
+
 class wnd {
 public:
 	wnd();
