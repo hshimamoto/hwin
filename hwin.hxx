@@ -27,11 +27,13 @@ public:
 
 class wnd {
 	cls *wndclass;
+	HWND handle;
 public:
 	wnd(cls *);
 	virtual ~wnd();
 	virtual LRESULT proc(HWND w, UINT m, WPARAM wp, LPARAM lp);
 	HWND create(void);
+	void destroy(void);
 };
 
 class app {

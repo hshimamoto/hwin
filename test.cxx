@@ -15,7 +15,7 @@ LRESULT mywnd::proc(HWND w, UINT m, WPARAM wp, LPARAM lp)
 {
 	switch (m) {
 	case WM_LBUTTONDOWN:
-		::DestroyWindow(w);
+		destroy();
 		return 0;
 	case WM_DESTROY:
 		::PostQuitMessage(0);
