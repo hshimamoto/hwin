@@ -54,6 +54,9 @@ HWND wnd::create(void)
 			CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
 			NULL, NULL, instance, NULL);
 
+	p__wnd0 = this;
+	SetWindowLongPtr(w, GWLP_WNDPROC, (LONG_PTR)wndproc0);
+
 	return w;
 }
 
