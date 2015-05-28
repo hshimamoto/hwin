@@ -5,11 +5,17 @@
 
 #include "hwin_defwndproc.hxx"
 
+#include <list>
+
+using namespace std;
+
 namespace hWin {
 
 static HINST instance;
 
 static LRESULT CALLBACK def_wndproc(HWND w, UINT m, WPARAM wp, LPARAM lp);
+
+static list<wndproc *> freelist, usedlist;
 
 cls::cls()
 {
@@ -50,12 +56,18 @@ LRESULT wnd::proc(HWND w, UINT m, WPARAM wp, LPARAM lp)
 
 HWND wnd::create(void)
 {
+	if (freelist.empty())
+		return NULL;
+
 	HWND w = ::CreateWindow(c->name(), "wnd", WS_OVERLAPPEDWINDOW,
 			CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
 			NULL, NULL, instance, NULL);
+	wndproc *pwp = freelist.front();
 
-	p__wnd0 = this;
-	SetWindowLongPtr(w, GWLP_WNDPROC, (LONG_PTR)wndproc0);
+	freelist.pop_front();
+
+	*(pwp->w) = this;
+	SetWindowLongPtr(w, GWLP_WNDPROC, (LONG_PTR)pwp->proc);
 
 	return w;
 }
@@ -90,6 +102,9 @@ using namespace hWin;
 int WINAPI _tWinMain(HINST inst, HINST prev, LPTSTR line, int show)
 {
 	hWin::instance = inst;
+
+	for (int i = 0; i < HWIN_MAX_WINDOW; i++)
+		freelist.push_back(&a__wnds[i]);
 
 	return hWinMain(inst, line, show);
 }

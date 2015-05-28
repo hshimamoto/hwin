@@ -20,8 +20,8 @@ done
 
 cat <<_EOF_ >> hwin_defwndproc.hxx
 namespace hWin {
-static struct {
-	wnd *w;
+static struct wndproc {
+	wnd **w;
 	WNDPROC proc;
 } a__wnds[HWIN_MAX_WINDOW] = {
 _EOF_
@@ -29,7 +29,7 @@ _EOF_
 for i in `seq 0 255`; do
 cat <<_EOF_ >> hwin_defwndproc.hxx
 #if $i < HWIN_MAX_WINDOW
-{ p__wnd$i, wndproc$i },
+{ &p__wnd$i, wndproc$i },
 #endif
 _EOF_
 done
