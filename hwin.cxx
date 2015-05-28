@@ -65,6 +65,7 @@ HWND wnd::create(void)
 	wndproc *pwp = freelist.front();
 
 	freelist.pop_front();
+	usedlist.push_back(pwp);
 
 	*(pwp->w) = this;
 	SetWindowLongPtr(w, GWLP_WNDPROC, (LONG_PTR)pwp->proc);
