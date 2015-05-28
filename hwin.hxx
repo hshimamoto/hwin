@@ -26,7 +26,7 @@ public:
 };
 
 class wnd {
-	cls *c;
+	cls *wndclass;
 public:
 	wnd(cls *);
 	virtual ~wnd();
