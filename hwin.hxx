@@ -28,6 +28,7 @@ public:
 class wnd {
 	cls *wndclass;
 	HWND handle;
+	WNDPROC origproc;
 public:
 	wnd(cls *);
 	virtual ~wnd();

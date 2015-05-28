@@ -70,8 +70,9 @@ HWND wnd::create(void)
 	freelist.pop_front();
 	usedlist.push_back(pwp);
 
+	origproc = (WNDPROC)::GetWindowLongPtr(handle, GWLP_WNDPROC);
 	*(pwp->w) = this;
-	SetWindowLongPtr(handle, GWLP_WNDPROC, (LONG_PTR)pwp->proc);
+	::SetWindowLongPtr(handle, GWLP_WNDPROC, (LONG_PTR)pwp->proc);
 
 	return handle;
 }
