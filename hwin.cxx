@@ -88,6 +88,27 @@ void wnd::destroy(void)
 	pwp = NULL;
 }
 
+notify_wnd::notify_wnd(cls *c) : wnd(c)
+{
+}
+
+notify_wnd::~notify_wnd()
+{
+}
+
+LRESULT notify_wnd::proc(HWND w, UINT m, WPARAM wp, LPARAM lp)
+{
+	return 0;
+}
+
+notify::notify(notify_wnd *w) : w(w)
+{
+}
+
+notify::~notify()
+{
+}
+
 app::app()
 {
 }

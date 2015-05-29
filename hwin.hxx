@@ -45,6 +45,20 @@ public:
 	void destroy(void);
 };
 
+class notify_wnd : public wnd {
+public:
+	notify_wnd(cls *);
+	virtual ~notify_wnd();
+	virtual LRESULT proc(HWND w, UINT m, WPARAM wp, LPARAM lp);
+};
+
+class notify {
+	notify_wnd *w;
+public:
+	notify(notify_wnd *w);
+	virtual ~notify();
+};
+
 class app {
 public:
 	app();
