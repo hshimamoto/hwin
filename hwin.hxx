@@ -16,6 +16,9 @@
 
 namespace hWin {
 
+////////
+// cls
+//   WNDCLASS wrapper
 class cls {
 	WNDCLASSEX wc;
 public:
@@ -32,6 +35,9 @@ struct wndproc {
 	WNDPROC proc;
 };
 
+////////
+// wnd
+//   Window class
 class wnd {
 	cls *wndclass;
 	HWND handle;
@@ -45,6 +51,9 @@ public:
 	void destroy(void);
 };
 
+////////
+// notify_wnd
+//   Window for handling Notification Area
 class notify_wnd : public wnd {
 public:
 	notify_wnd(cls *);
@@ -52,6 +61,9 @@ public:
 	virtual LRESULT proc(HWND w, UINT m, WPARAM wp, LPARAM lp);
 };
 
+////////
+// notify
+//   Notification Class
 class notify {
 	notify_wnd *w;
 public:
@@ -59,6 +71,9 @@ public:
 	virtual ~notify();
 };
 
+////////
+// app
+//   Application Class
 class app {
 public:
 	app();

@@ -17,6 +17,9 @@ static LRESULT CALLBACK def_wndproc(HWND w, UINT m, WPARAM wp, LPARAM lp);
 
 static list<wndproc *> freelist, usedlist;
 
+////////
+// cls
+//   WNDCLASS wrapper
 cls::cls()
 {
 	memset(&wc, 0, sizeof(wc));
@@ -41,6 +44,9 @@ LPCTSTR cls::name(void)
 	return wc.lpszClassName;
 }
 
+////////
+// wnd
+//   Window class
 wnd::wnd(cls *c) : wndclass(c), handle(NULL), pwp(NULL)
 {
 }
@@ -88,6 +94,9 @@ void wnd::destroy(void)
 	pwp = NULL;
 }
 
+////////
+// notify_wnd
+//   Window for handling Notification Area
 notify_wnd::notify_wnd(cls *c) : wnd(c)
 {
 }
@@ -101,6 +110,9 @@ LRESULT notify_wnd::proc(HWND w, UINT m, WPARAM wp, LPARAM lp)
 	return 0;
 }
 
+////////
+// notify
+//   Notification Class
 notify::notify(notify_wnd *w) : w(w)
 {
 }
@@ -109,6 +121,9 @@ notify::~notify()
 {
 }
 
+////////
+// app
+//   Application Class
 app::app()
 {
 }
