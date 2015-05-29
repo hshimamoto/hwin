@@ -61,6 +61,8 @@ public:
 	virtual LRESULT proc(HWND w, UINT m, WPARAM wp, LPARAM lp);
 };
 
+#define WM_HWIN_NOTIFY	(WM_APP + 0)
+
 ////////
 // notify
 //   Notification Class
