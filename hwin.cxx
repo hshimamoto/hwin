@@ -94,20 +94,59 @@ void wnd::destroy(void)
 	pwp = NULL;
 }
 
+HWND wnd::get(void)
+{
+	return handle;
+}
+
+#define HWIN_MAX_NOTIFY	(256)
 ////////
 // notify_wnd
 //   Window for handling Notification Area
 notify_wnd::notify_wnd(cls *c) : wnd(c)
 {
+	notifies = new notify *[HWIN_MAX_NOTIFY];
+	for (int i = 0; i < HWIN_MAX_NOTIFY; i++)
+		notifies[i] = NULL;
 }
 
 notify_wnd::~notify_wnd()
 {
+	delete[] notifies;
 }
 
 LRESULT notify_wnd::proc(HWND w, UINT m, WPARAM wp, LPARAM lp)
 {
+	if (m == WM_HWIN_NOTIFY) {
+		if (0 <= wp && wp < HWIN_MAX_NOTIFY) {
+			notify *n = notifies[wp];
+
+			if (n)
+				n->proc(lp);
+		}
+	}
 	return 0;
+}
+
+UINT notify_wnd::notify_add(notify *n)
+{
+	int id;
+
+	for (id = 0; id < HWIN_MAX_NOTIFY; id++) {
+		if (!notifies[id])
+			goto found;
+	}
+	return HWIN_MAX_NOTIFY; // TODO: should be error or throw
+found:
+	NOTIFYICONDATA *ni = n->get();
+
+	ni->hWnd = get(); // get handle
+	ni->uID = id;
+	ni->uCallbackMessage = WM_HWIN_NOTIFY;
+
+	notifies[id] = n;
+
+	return id;
 }
 
 ////////
@@ -115,9 +154,22 @@ LRESULT notify_wnd::proc(HWND w, UINT m, WPARAM wp, LPARAM lp)
 //   Notification Class
 notify::notify(notify_wnd *w) : w(w)
 {
+	memset(&ni, 0, sizeof(ni));
+	ni.cbSize = sizeof(ni);
+	//
+	w->notify_add(this);
 }
 
 notify::~notify()
+{
+}
+
+NOTIFYICONDATA *notify::get(void)
+{
+	return &ni;
+}
+
+void notify::proc(LPARAM m)
 {
 }
 

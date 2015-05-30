@@ -49,16 +49,21 @@ public:
 	virtual LRESULT proc(HWND w, UINT m, WPARAM wp, LPARAM lp);
 	HWND create(void);
 	void destroy(void);
+	HWND get(void);
 };
+
+class notify;
 
 ////////
 // notify_wnd
 //   Window for handling Notification Area
 class notify_wnd : public wnd {
+	notify **notifies;
 public:
 	notify_wnd(cls *);
 	virtual ~notify_wnd();
 	virtual LRESULT proc(HWND w, UINT m, WPARAM wp, LPARAM lp);
+	virtual UINT notify_add(notify *n);
 };
 
 #define WM_HWIN_NOTIFY	(WM_APP + 0)
@@ -68,9 +73,12 @@ public:
 //   Notification Class
 class notify {
 	notify_wnd *w;
+	NOTIFYICONDATA ni;
 public:
 	notify(notify_wnd *w);
 	virtual ~notify();
+	NOTIFYICONDATA *get(void);
+	virtual void proc(LPARAM m);
 };
 
 ////////
