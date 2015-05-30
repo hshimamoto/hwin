@@ -16,9 +16,12 @@ public:
 };
 
 class mywnd : public wnd {
+	mynwnd *nw;
+	mynotify *n;
 public:
-	mywnd(cls *p) : wnd(p) {}
+	mywnd(cls *p) : wnd(p), nw(NULL), n(NULL) {}
 	virtual LRESULT proc(HWND w, UINT m, WPARAM wp, LPARAM lp);
+	virtual void on_create(void);
 };
 
 LRESULT mywnd::proc(HWND w, UINT m, WPARAM wp, LPARAM lp)
@@ -35,11 +38,16 @@ LRESULT mywnd::proc(HWND w, UINT m, WPARAM wp, LPARAM lp)
 	return ::DefWindowProc(w, m, wp, lp);
 }
 
+void mywnd::on_create(void)
+{
+	nw = new mynwnd(get_class());
+	nw->create();
+	n = new mynotify(nw);
+}
+
 class myapp : public app {
 	cls *c;
 	wnd *w;
-	mynwnd *nw;
-	mynotify *n;
 public:
 	myapp();
 	void main(void);
@@ -49,8 +57,6 @@ myapp::myapp()
 {
 	c = new cls();
 	w = new mywnd(c);
-
-	nw = new mynwnd(c);
 
 	c->regClass();
 }
@@ -62,16 +68,7 @@ void myapp::main(void)
 	::UpdateWindow(wnd);
 	::ShowWindow(wnd, SW_SHOW);
 
-	wnd = nw->create();
-
-	::UpdateWindow(wnd);
-	::ShowWindow(wnd, SW_SHOW);
-
-	n = new mynotify(nw);
-
 	msgloop();
-
-	nw->destroy();
 }
 
 int hWinMain(HINST inst, LPTSTR line, int show)

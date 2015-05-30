@@ -51,6 +51,7 @@ public:
 	HWND create(void);
 	void destroy(void);
 	HWND get(void);
+	cls *get_class(void);
 };
 
 class notify;

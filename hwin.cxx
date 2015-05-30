@@ -106,6 +106,11 @@ HWND wnd::get(void)
 	return handle;
 }
 
+cls* wnd::get_class(void)
+{
+	return wndclass;
+}
+
 #define HWIN_MAX_NOTIFY	(256)
 ////////
 // notify_wnd
