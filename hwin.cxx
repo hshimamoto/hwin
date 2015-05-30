@@ -60,6 +60,10 @@ LRESULT wnd::proc(HWND w, UINT m, WPARAM wp, LPARAM lp)
 	return 0;
 }
 
+void wnd::on_create(void)
+{
+}
+
 HWND wnd::create(void)
 {
 	if (freelist.empty())
@@ -79,6 +83,9 @@ HWND wnd::create(void)
 	origproc = (WNDPROC)::GetWindowLongPtr(handle, GWLP_WNDPROC);
 	*(pwp->w) = this;
 	::SetWindowLongPtr(handle, GWLP_WNDPROC, (LONG_PTR)pwp->proc);
+
+	// call on_create for initialize
+	on_create();
 
 	return handle;
 }
