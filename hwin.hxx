@@ -24,6 +24,8 @@ namespace hWin {
 //   WNDCLASS wrapper
 class cls {
 	WNDCLASSEX wc;
+	bool registered;
+	void reg(void);
 public:
 	cls();
 	virtual ~cls();

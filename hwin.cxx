@@ -20,7 +20,7 @@ static list<wndproc *> freelist, usedlist;
 ////////
 // cls
 //   WNDCLASS wrapper
-cls::cls()
+cls::cls() : registered(false)
 {
 	memset(&wc, 0, sizeof(wc));
 	wc.cbSize = sizeof(wc);
@@ -34,13 +34,21 @@ cls::~cls()
 {
 }
 
-void cls::regClass(void)
+void cls::reg(void)
 {
 	::RegisterClassEx(&wc);
+	registered = true;
+}
+
+void cls::regClass(void)
+{
+	reg();
 }
 
 LPCTSTR cls::name(void)
 {
+	if (!registered)
+		reg();
 	return wc.lpszClassName;
 }
 
