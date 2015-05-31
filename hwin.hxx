@@ -81,6 +81,9 @@ public:
 	virtual ~notify();
 	NOTIFYICONDATA *get(void);
 	virtual void proc(LPARAM m);
+	void add(void);
+	void mod(void);
+	void del(void);
 };
 
 ////////
