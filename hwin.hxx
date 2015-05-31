@@ -23,9 +23,10 @@ namespace hWin {
 // cls
 //   WNDCLASS wrapper
 class cls {
-	WNDCLASSEX wc;
 	bool registered;
 	void reg(void);
+protected:
+	WNDCLASSEX wc;
 public:
 	cls();
 	virtual ~cls();
