@@ -57,8 +57,6 @@ myapp::myapp()
 {
 	c = new cls();
 	w = new mywnd(c);
-
-	c->regClass();
 }
 
 void myapp::main(void)
