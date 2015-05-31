@@ -96,6 +96,8 @@ public:
 	void msgloop(void);
 };
 
+HINSTANCE getInst(void);
+
 }; // hWin
 
 extern int hWinMain(HINST, LPTSTR, int);

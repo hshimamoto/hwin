@@ -226,6 +226,11 @@ static LRESULT CALLBACK def_wndproc(HWND w, UINT m, WPARAM wp, LPARAM lp)
 	return ::DefWindowProc(w, m, wp, lp);
 }
 
+HINST getInst(void)
+{
+	return instance;
+}
+
 }; // namespace hWin
 
 using namespace hWin;
