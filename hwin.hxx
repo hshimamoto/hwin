@@ -102,6 +102,8 @@ public:
 // app
 //   Application Class
 class app {
+protected:
+	HINST inst;
 public:
 	app();
 	virtual ~app();

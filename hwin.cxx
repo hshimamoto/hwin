@@ -236,6 +236,7 @@ void notify::mod(void)
 //   Application Class
 app::app()
 {
+	inst = instance;
 }
 
 app::~app()
