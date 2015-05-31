@@ -30,6 +30,7 @@ protected:
 public:
 	cls();
 	virtual ~cls();
+	// regClass will be removed
 	virtual void regClass(void);
 	LPCTSTR name(void);
 };
