@@ -66,15 +66,20 @@ void wnd::on_create(void)
 {
 }
 
-HWND wnd::create(void)
+HWND wnd::create(LPCTSTR title)
 {
+	LPCTSTR def_title = "wnd";
+
 	if (freelist.empty())
 		return NULL;
 
 	if (handle)
 		return handle;
 
-	handle = ::CreateWindow(wndclass->name(), "wnd", style,
+	if (!title)
+		title = def_title;
+
+	handle = ::CreateWindow(wndclass->name(), title, style,
 			CW_USEDEFAULT, CW_USEDEFAULT,
 			CW_USEDEFAULT, CW_USEDEFAULT,
 			NULL, NULL, instance, NULL);
@@ -91,6 +96,11 @@ HWND wnd::create(void)
 	on_create();
 
 	return handle;
+}
+
+HWND wnd::create(void)
+{
+	return create(NULL);
 }
 
 void wnd::destroy(void)

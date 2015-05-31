@@ -53,6 +53,7 @@ public:
 	virtual ~wnd();
 	virtual LRESULT proc(HWND w, UINT m, WPARAM wp, LPARAM lp);
 	virtual void on_create(void);
+	HWND create(LPCTSTR title);
 	HWND create(void);
 	void destroy(void);
 	HWND get(void);
