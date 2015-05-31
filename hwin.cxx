@@ -26,7 +26,6 @@ cls::cls() : registered(false)
 	wc.cbSize = sizeof(wc);
 	wc.style = CS_HREDRAW | CS_VREDRAW;
 	wc.lpfnWndProc = def_wndproc;
-	wc.hInstance = instance;
 	wc.lpszClassName = "hWin::cls";
 }
 
@@ -36,6 +35,7 @@ cls::~cls()
 
 void cls::reg(void)
 {
+	wc.hInstance = instance;
 	::RegisterClassEx(&wc);
 	registered = true;
 }
