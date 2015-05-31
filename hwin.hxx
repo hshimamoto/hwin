@@ -1,3 +1,6 @@
+// MIT License
+// Copyright (c) 2015 Hiroshi Shimamoto
+
 #ifndef HWIN_HXX
 #define HWIN_HXX
 
