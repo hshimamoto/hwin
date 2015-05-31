@@ -47,7 +47,9 @@ LPCTSTR cls::name(void)
 ////////
 // wnd
 //   Window class
-wnd::wnd(cls *c) : wndclass(c), handle(NULL), pwp(NULL)
+wnd::wnd(cls *c) :
+	wndclass(c), handle(NULL), pwp(NULL),
+	style(WS_OVERLAPPEDWINDOW)
 {
 }
 
@@ -72,8 +74,9 @@ HWND wnd::create(void)
 	if (handle)
 		return handle;
 
-	handle = ::CreateWindow(wndclass->name(), "wnd", WS_OVERLAPPEDWINDOW,
-			CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+	handle = ::CreateWindow(wndclass->name(), "wnd", style,
+			CW_USEDEFAULT, CW_USEDEFAULT,
+			CW_USEDEFAULT, CW_USEDEFAULT,
 			NULL, NULL, instance, NULL);
 	pwp = freelist.front();
 

@@ -46,6 +46,8 @@ class wnd {
 	HWND handle;
 	WNDPROC origproc;
 	wndproc *pwp;
+	// internal
+	DWORD style;
 public:
 	wnd(cls *);
 	virtual ~wnd();
