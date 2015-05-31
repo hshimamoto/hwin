@@ -108,6 +108,10 @@ public:
 	app();
 	virtual ~app();
 	void msgloop(void);
+	//
+	virtual void init(void);
+	virtual int main(void);
+	virtual void exit(void);
 };
 
 HINSTANCE getInst(void);

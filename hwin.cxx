@@ -231,11 +231,13 @@ void notify::mod(void)
 	::Shell_NotifyIcon(NIM_MODIFY, &ni);
 }
 
+static app *thisapp;
 ////////
 // app
 //   Application Class
 app::app()
 {
+	thisapp = this;
 	inst = instance;
 }
 
@@ -251,6 +253,18 @@ void app::msgloop(void)
 		::TranslateMessage(&msg);
 		::DispatchMessage(&msg);
 	}
+}
+
+void app::init(void)
+{
+}
+
+int app::main(void)
+{
+}
+
+void app::exit(void)
+{
 }
 
 static LRESULT CALLBACK def_wndproc(HWND w, UINT m, WPARAM wp, LPARAM lp)
@@ -274,6 +288,16 @@ int WINAPI _tWinMain(HINST inst, HINST prev, LPTSTR line, int show)
 	// initialize wndproc array
 	for (int i = 0; i < HWIN_MAX_WINDOW; i++)
 		freelist.push_back(&a__wnds[i]);
+
+	if (thisapp) {
+		int ret;
+
+		thisapp->init();
+		ret = thisapp->main();
+		thisapp->exit();
+
+		return ret;
+	}
 
 	return hWinMain(inst, line, show);
 }
