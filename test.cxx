@@ -15,6 +15,17 @@ public:
 	mynotify(notify_wnd* nw) : notify(nw) {}
 };
 
+class mycls : public cls {
+public:
+	mycls();
+};
+
+mycls::mycls()
+{
+	wc.hCursor = ::LoadCursor(getInst(), IDC_ARROW);
+	wc.hbrBackground = (HBRUSH)::GetStockObject(WHITE_BRUSH);
+}
+
 class mywnd : public wnd {
 	mynwnd *nw;
 	mynotify *n;
@@ -46,7 +57,7 @@ void mywnd::on_create(void)
 }
 
 class myapp : public app {
-	cls *c;
+	mycls *c;
 	wnd *w;
 public:
 	myapp();
@@ -55,7 +66,7 @@ public:
 
 myapp::myapp()
 {
-	c = new cls();
+	c = new mycls();
 	w = new mywnd(c);
 }
 
