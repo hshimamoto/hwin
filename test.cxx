@@ -60,30 +60,31 @@ class myapp : public app {
 	mycls *c;
 	wnd *w;
 public:
-	myapp();
-	void mymain(void);
+	myapp() {};
+	void init(void);
+	int main(void);
 };
 
-myapp::myapp()
+void myapp::init(void)
 {
 	c = new mycls();
 	w = new mywnd(c);
 }
 
-void myapp::mymain(void)
+int myapp::main(void)
 {
 	w->create();
 	w->update();
 	w->show(SW_SHOW);
 
 	msgloop();
+
+	return 0;
 }
+
+myapp a;
 
 int hWinMain(HINST inst, LPTSTR line, int show)
 {
-	myapp a;
-
-	a.mymain();
-
 	return 0;
 }
