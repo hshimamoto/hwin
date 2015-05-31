@@ -19,5 +19,7 @@ test.exe: $(test-objs)
 %.o: %.cxx
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
+hwin.o: hwin.hxx
+
 clean:
 	rm -f *.o
