@@ -109,7 +109,7 @@ public:
 	virtual ~app();
 	void msgloop(void);
 	//
-	virtual void init(void);
+	virtual void init(HINST, LPTSTR, int);
 	virtual int main(void);
 	virtual void exit(void);
 };

@@ -61,11 +61,11 @@ class myapp : public app {
 	wnd *w;
 public:
 	myapp() {};
-	void init(void);
+	void init(HINST, LPTSTR, int);
 	int main(void);
 };
 
-void myapp::init(void)
+void myapp::init(HINST inst, LPTSTR line, int show)
 {
 	c = new mycls();
 	w = new mywnd(c);

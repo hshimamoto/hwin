@@ -255,12 +255,13 @@ void app::msgloop(void)
 	}
 }
 
-void app::init(void)
+void app::init(HINST inst, LPTSTR line, int show)
 {
 }
 
 int app::main(void)
 {
+	return 0;
 }
 
 void app::exit(void)
@@ -292,7 +293,7 @@ int WINAPI _tWinMain(HINST inst, HINST prev, LPTSTR line, int show)
 	if (thisapp) {
 		int ret;
 
-		thisapp->init();
+		thisapp->init(inst, line, show);
 		ret = thisapp->main();
 		thisapp->exit();
 
