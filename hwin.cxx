@@ -122,6 +122,16 @@ void wnd::destroy(void)
 	pwp = NULL;
 }
 
+void wnd::update(void)
+{
+	::UpdateWindow(handle);
+}
+
+void wnd::show(int n)
+{
+	::ShowWindow(handle, n);
+}
+
 HWND wnd::get(void)
 {
 	return handle;

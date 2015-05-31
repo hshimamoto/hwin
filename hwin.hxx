@@ -59,6 +59,8 @@ public:
 	HWND create(LPCTSTR title);
 	HWND create(void);
 	void destroy(void);
+	void update(void);
+	void show(int);
 	HWND get(void);
 	cls *get_class(void);
 };
