@@ -61,7 +61,7 @@ class myapp : public app {
 	wnd *w;
 public:
 	myapp();
-	void main(void);
+	void mymain(void);
 };
 
 myapp::myapp()
@@ -70,7 +70,7 @@ myapp::myapp()
 	w = new mywnd(c);
 }
 
-void myapp::main(void)
+void myapp::mymain(void)
 {
 	w->create();
 	w->update();
@@ -83,7 +83,7 @@ int hWinMain(HINST inst, LPTSTR line, int show)
 {
 	myapp a;
 
-	a.main();
+	a.mymain();
 
 	return 0;
 }
