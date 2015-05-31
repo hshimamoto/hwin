@@ -61,10 +61,9 @@ myapp::myapp()
 
 void myapp::main(void)
 {
-	HWND wnd = w->create();
-
-	::UpdateWindow(wnd);
-	::ShowWindow(wnd, SW_SHOW);
+	w->create();
+	w->update();
+	w->show(SW_SHOW);
 
 	msgloop();
 }
