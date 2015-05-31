@@ -8,13 +8,14 @@ CXXFLAGS += -mwindows
 LDFLAGS = -g -O2 -Wall
 LDFLAGS += -mwindows
 LDFLAGS += -static
+LIBS = -lws2_32
 
-test-objs = hwin.o test.o
+test-objs = hwin.o hwinnet.o test.o
 
 all: test.exe
 
 test.exe: $(test-objs)
-	$(LD) $(LDFLAGS) -o $@ $($(basename $@)-objs)
+	$(LD) $(LDFLAGS) -o $@ $($(basename $@)-objs) $(LIBS)
 
 %.o: %.cxx
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
