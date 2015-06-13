@@ -71,6 +71,12 @@ public:
 	void show(int n) {
 		::ShowWindow(handle, n);
 	}
+	void postMessage(UINT m, WPARAM wp, LPARAM lp) {
+		::PostMessage(handle, m, wp, lp);
+	}
+	LRESULT sendMessage(UINT m, WPARAM wp, LPARAM lp) {
+		return ::SendMessage(handle, m, wp, lp);
+	}
 	//
 	LRESULT wndproc(HWND w, UINT m, WPARAM wp, LPARAM lp);
 	//
