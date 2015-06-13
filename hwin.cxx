@@ -132,6 +132,17 @@ void wnd::show(int n)
 	::ShowWindow(handle, n);
 }
 
+LRESULT wnd::wndproc(HWND h, UINT m, WPARAM wp, LPARAM lp)
+{
+	LRESULT ret;
+
+	pre_proc(h, m, wp, lp);
+	ret = proc(h, m, wp, lp);
+	post_proc(h, m, wp, lp);
+
+	return ret;
+}
+
 cls* wnd::get_class(void)
 {
 	return wndclass;

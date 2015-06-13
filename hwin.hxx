@@ -56,12 +56,18 @@ public:
 	wnd(cls *);
 	virtual ~wnd();
 	virtual LRESULT proc(HWND w, UINT m, WPARAM wp, LPARAM lp);
+	// hooks
+	virtual void pre_proc(HWND w, UINT m, WPARAM wp, LPARAM lp) {}
+	virtual void post_proc(HWND w, UINT m, WPARAM wp, LPARAM lp) {}
+	//
 	virtual void on_create(void);
 	HWND create(LPCTSTR title);
 	HWND create(void);
 	void destroy(void);
 	void update(void);
 	void show(int);
+	//
+	LRESULT wndproc(HWND w, UINT m, WPARAM wp, LPARAM lp);
 	//
 	HWND get(void) {
 		return handle;

@@ -4,7 +4,7 @@ using namespace hWin;
 wnd *p__wnd ## n; \
 static CALLBACK LRESULT \
 wndproc ## n (HWND w, UINT m, WPARAM wp, LPARAM lp) \
-{ return p__wnd ## n -> proc(w, m, wp, lp); }
+{ return p__wnd ## n -> wndproc(w, m, wp, lp); }
 #if 0 < HWIN_MAX_WINDOW
 DEFINE_WNDPROC(0)
 #endif

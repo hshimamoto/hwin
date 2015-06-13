@@ -7,7 +7,7 @@ using namespace hWin;
 wnd *p__wnd ## n; \\
 static CALLBACK LRESULT \\
 wndproc ## n (HWND w, UINT m, WPARAM wp, LPARAM lp) \\
-{ return p__wnd ## n -> proc(w, m, wp, lp); }
+{ return p__wnd ## n -> wndproc(w, m, wp, lp); }
 _EOF_
 
 for i in `seq 0 255`; do
