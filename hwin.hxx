@@ -64,8 +64,13 @@ public:
 	HWND create(LPCTSTR title);
 	HWND create(void);
 	void destroy(void);
-	void update(void);
-	void show(int);
+	//
+	void update(void) {
+		::UpdateWindow(handle);
+	}
+	void show(int n) {
+		::ShowWindow(handle, n);
+	}
 	//
 	LRESULT wndproc(HWND w, UINT m, WPARAM wp, LPARAM lp);
 	//

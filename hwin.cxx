@@ -122,16 +122,6 @@ void wnd::destroy(void)
 	pwc = NULL;
 }
 
-void wnd::update(void)
-{
-	::UpdateWindow(handle);
-}
-
-void wnd::show(int n)
-{
-	::ShowWindow(handle, n);
-}
-
 LRESULT wnd::wndproc(HWND h, UINT m, WPARAM wp, LPARAM lp)
 {
 	LRESULT ret;
