@@ -85,7 +85,7 @@ class notify_wnd : public wnd {
 public:
 	notify_wnd(cls *);
 	virtual ~notify_wnd();
-	virtual LRESULT proc(HWND w, UINT m, WPARAM wp, LPARAM lp);
+	virtual void pre_proc(HWND w, UINT m, WPARAM wp, LPARAM lp);
 	virtual UINT notify_add(notify *n);
 };
 

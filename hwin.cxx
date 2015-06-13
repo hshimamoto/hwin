@@ -164,7 +164,7 @@ notify_wnd::~notify_wnd()
 	delete[] notifies;
 }
 
-LRESULT notify_wnd::proc(HWND w, UINT m, WPARAM wp, LPARAM lp)
+void notify_wnd::pre_proc(HWND w, UINT m, WPARAM wp, LPARAM lp)
 {
 	if (m == WM_HWIN_NOTIFY) {
 		if (0 <= wp && wp < HWIN_MAX_NOTIFY) {
@@ -174,7 +174,6 @@ LRESULT notify_wnd::proc(HWND w, UINT m, WPARAM wp, LPARAM lp)
 				n->proc(lp);
 		}
 	}
-	return 0;
 }
 
 UINT notify_wnd::notify_add(notify *n)
