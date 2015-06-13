@@ -292,3 +292,10 @@ int WINAPI _tWinMain(HINST inst, HINST prev, LPTSTR line, int show)
 
 	return hWinMain(inst, line, show);
 }
+
+int hWinMain(HINST inst, LPTSTR line, int show)
+{
+	return 0;
+}
+
+int hWinMain(HINST, LPTSTR, int) __attribute__((weak));

@@ -83,8 +83,3 @@ int myapp::main(void)
 }
 
 myapp a;
-
-int hWinMain(HINST inst, LPTSTR line, int show)
-{
-	return 0;
-}
