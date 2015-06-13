@@ -62,7 +62,10 @@ public:
 	void destroy(void);
 	void update(void);
 	void show(int);
-	HWND get(void);
+	//
+	HWND get(void) {
+		return handle;
+	}
 	cls *get_class(void);
 };
 

@@ -132,11 +132,6 @@ void wnd::show(int n)
 	::ShowWindow(handle, n);
 }
 
-HWND wnd::get(void)
-{
-	return handle;
-}
-
 cls* wnd::get_class(void)
 {
 	return wndclass;
