@@ -20,7 +20,7 @@ done
 
 cat <<_EOF_ >> hwin_defwndproc.hxx
 namespace hWin {
-static struct wndproc a__wnds[HWIN_MAX_WINDOW] = {
+static struct wndcontainer a__wnds[HWIN_MAX_WINDOW] = {
 _EOF_
 
 for i in `seq 0 255`; do

@@ -37,7 +37,7 @@ public:
 
 class wnd;
 
-struct wndproc {
+struct wndcontainer {
 	wnd **w;
 	WNDPROC proc;
 };
@@ -49,7 +49,7 @@ class wnd {
 	cls *wndclass;
 	HWND handle;
 	WNDPROC origproc;
-	wndproc *pwp;
+	wndcontainer *pwc;
 	// internal
 	DWORD style;
 public:

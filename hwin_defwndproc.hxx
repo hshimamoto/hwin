@@ -774,7 +774,7 @@ DEFINE_WNDPROC(254)
 DEFINE_WNDPROC(255)
 #endif
 namespace hWin {
-static struct wndproc a__wnds[HWIN_MAX_WINDOW] = {
+static struct wndcontainer a__wnds[HWIN_MAX_WINDOW] = {
 #if 0 < HWIN_MAX_WINDOW
 { &p__wnd0, wndproc0 },
 #endif

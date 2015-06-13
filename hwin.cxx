@@ -15,7 +15,7 @@ static HINST instance;
 
 static LRESULT CALLBACK def_wndproc(HWND w, UINT m, WPARAM wp, LPARAM lp);
 
-static list<wndproc *> freelist, usedlist;
+static list<wndcontainer *> freelist, usedlist;
 
 ////////
 // cls
@@ -56,7 +56,7 @@ LPCTSTR cls::name(void)
 // wnd
 //   Window class
 wnd::wnd(cls *c) :
-	wndclass(c), handle(NULL), pwp(NULL),
+	wndclass(c), handle(NULL), pwc(NULL),
 	style(WS_OVERLAPPEDWINDOW)
 {
 }
@@ -91,14 +91,14 @@ HWND wnd::create(LPCTSTR title)
 			CW_USEDEFAULT, CW_USEDEFAULT,
 			CW_USEDEFAULT, CW_USEDEFAULT,
 			NULL, NULL, instance, NULL);
-	pwp = freelist.front();
+	pwc = freelist.front();
 
 	freelist.pop_front();
-	usedlist.push_back(pwp);
+	usedlist.push_back(pwc);
 
 	origproc = (WNDPROC)::GetWindowLongPtr(handle, GWLP_WNDPROC);
-	*(pwp->w) = this;
-	::SetWindowLongPtr(handle, GWLP_WNDPROC, (LONG_PTR)pwp->proc);
+	*(pwc->w) = this;
+	::SetWindowLongPtr(handle, GWLP_WNDPROC, (LONG_PTR)pwc->proc);
 
 	// call on_create for initialize
 	on_create();
@@ -117,9 +117,9 @@ void wnd::destroy(void)
 		::DestroyWindow(handle);
 	// restore
 	::SetWindowLongPtr(handle, GWLP_WNDPROC, (LONG_PTR)origproc);
-	usedlist.remove(pwp);
-	freelist.push_back(pwp);
-	pwp = NULL;
+	usedlist.remove(pwc);
+	freelist.push_back(pwc);
+	pwc = NULL;
 }
 
 void wnd::update(void)
@@ -276,7 +276,7 @@ int WINAPI _tWinMain(HINST inst, HINST prev, LPTSTR line, int show)
 {
 	hWin::instance = inst;
 
-	// initialize wndproc array
+	// initialize wndcontainer array
 	for (int i = 0; i < HWIN_MAX_WINDOW; i++)
 		freelist.push_back(&a__wnds[i]);
 
