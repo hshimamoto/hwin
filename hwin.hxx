@@ -94,11 +94,14 @@ class notify {
 public:
 	notify(notify_wnd *w);
 	virtual ~notify();
-	NOTIFYICONDATA *get(void);
 	virtual void proc(LPARAM m);
 	void add(void);
 	void mod(void);
 	void del(void);
+	//
+	NOTIFYICONDATA *get(void) {
+		return &ni;
+	}
 };
 
 ////////

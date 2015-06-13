@@ -202,11 +202,6 @@ notify::~notify()
 {
 }
 
-NOTIFYICONDATA *notify::get(void)
-{
-	return &ni;
-}
-
 void notify::proc(LPARAM m)
 {
 }
