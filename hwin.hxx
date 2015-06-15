@@ -125,6 +125,9 @@ public:
 	NOTIFYICONDATA *get(void) {
 		return &ni;
 	}
+	notify_wnd *get_wnd(void) {
+		return w;
+	}
 };
 
 ////////
