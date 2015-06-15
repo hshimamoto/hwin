@@ -206,21 +206,6 @@ void notify::proc(LPARAM m)
 {
 }
 
-void notify::add(void)
-{
-	::Shell_NotifyIcon(NIM_ADD, &ni);
-}
-
-void notify::del(void)
-{
-	::Shell_NotifyIcon(NIM_DELETE, &ni);
-}
-
-void notify::mod(void)
-{
-	::Shell_NotifyIcon(NIM_MODIFY, &ni);
-}
-
 static app *thisapp;
 ////////
 // app

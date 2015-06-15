@@ -112,9 +112,15 @@ public:
 	notify(notify_wnd *w);
 	virtual ~notify();
 	virtual void proc(LPARAM m);
-	void add(void);
-	void mod(void);
-	void del(void);
+	void add(void) {
+		::Shell_NotifyIcon(NIM_ADD, &ni);
+	}
+	void mod(void) {
+		::Shell_NotifyIcon(NIM_MODIFY, &ni);
+	}
+	void del(void) {
+		::Shell_NotifyIcon(NIM_DELETE, &ni);
+	}
 	//
 	NOTIFYICONDATA *get(void) {
 		return &ni;
